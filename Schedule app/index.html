@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Schedule App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css" media="screen" type="text/css">
+
+
+  </head>
+  <body>
+    <div class="main_container">
+      <span class="appointment">
+        <button type="button" name="button" class="new">New Appointment</button>
+        <span class="appointment_data">
+          <p>
+            <span>Time: </span><span id="time"></span>
+          </p>
+          <p>
+            <span>Duration: </span><span id="duration"></span>
+          </p>
+        </span>
+        <div class="clr"></div>
+      </span>
+
+      <span id="schedule_calender"></span>
+    </div>
+
+
+    <script src="js/react.min.js"></script>
+    <script src="js/react-dom.min.js"></script>
+    <script src="js/browser.min.js"></script>
+    <script src="js/jquery-3.1.0.min.js"></script>
+
+    <script type="text/babel">
+    class Schedule extends React.Component{
+      constructor(props){
+        super(props);
+
+        var dayOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+        var timeOfDay = ['8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
+                          '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '1:00', '1:15', '1:30',
+                          '1:45', '2:00', '2:15', '2:30', '2:45', '3:00', '3:15', '3:30', '3:45', '4:00', '4:15', '4:30',
+                          '4:45', '5:00'];
+
+        this.state = {
+          date: [
+            {
+              time: timeOfDay,
+              day: dayOfWeek
+            }
+          ]
+        }
+      }
+
+
+      render(){
+        return(
+          <div>
+            {this.state.date.map((value, i) => <Table
+            key = {i} day = {value.day} time = {value.time}/>)}
+          </div>
+        )
+      }
+    }
+
+    class Table extends React.Component {
+      constructor(props){
+        super(props);
+        this.ct = this.ct.bind(this);
+      }
+      componentDidMount(){
+        var x;
+        var duration = 0;
+        $('.cell').click(function(){
+          x++;
+          if (x == 1) {
+            $(this).css("background-color", "#03A9F4");
+            var duration = x*15;
+            document.getElementById('duration').innerHTML = duration + ' min';
+
+          }else if (x == 2) {
+            var column_num = parseInt( $(this).index() );
+            $(this).css("background-color", "#FFC107");
+            $(this).parent().prev().children().eq(column_num).css("background-color", "#FFC107");
+
+            var duration = x*15;
+            document.getElementById('duration').innerHTML = duration + ' min';
+
+          }else if (x == 3) {
+            var column_num = parseInt( $(this).index() );
+            $(this).css("background-color", "#8BC34A");
+            $(this).parent().prev().children().eq(column_num).css("background-color", "#8BC34A");
+            $(this).parent().prev().prev().children().eq(column_num).css("background-color", "#8BC34A");
+
+            var duration = x*15;
+            document.getElementById('duration').innerHTML = duration + ' min';
+          }else {
+            duration = 0;
+          }
+        });
+
+        $('.new').click(function(){
+          x = 0;
+          duration = 0;
+        });
+      }
+
+      ct(e){
+        var y = e.target.getAttribute('d');
+        var z = e.target.getAttribute('value');
+        document.getElementById('time').innerHTML = y + ' ' + z;
+      }
+
+      render(){
+        var timeBox = [];
+        var timeOfDay = ['8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45',
+                          '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '1:00', '1:15', '1:30',
+                          '1:45', '2:00', '2:15', '2:30', '2:45', '3:00', '3:15', '3:30', '3:45', '4:00', '4:15', '4:30',
+                          '4:45', '5:00'];
+        for (var i = 0; i < timeOfDay.length; i++) {
+
+          timeBox.push(
+            <tr>
+              <td>{this.props.time[i]}</td>
+              <td d={this.props.day[0]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+              <td d={this.props.day[1]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+              <td d={this.props.day[2]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+              <td d={this.props.day[3]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+              <td d={this.props.day[4]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+              <td d={this.props.day[5]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+              <td d={this.props.day[6]} value={this.props.time[i]} onClick={this.ct} className='cell'></td>
+            </tr>
+          );
+        }
+        return(
+          <table>
+            <tr>
+              <td></td>
+              <td>Sunday</td>
+              <td>Monday</td>
+              <td>Tueday</td>
+              <td>Wedday</td>
+              <td>Thuday</td>
+              <td>Friday</td>
+              <td>Satday</td>
+            </tr>
+            {timeBox}
+          </table>
+        )
+      }
+    }
+
+    ReactDOM.render(
+      <Schedule/>,
+      document.getElementById('schedule_calender')
+    );
+
+    </script>
+
+  </body>
+</html>

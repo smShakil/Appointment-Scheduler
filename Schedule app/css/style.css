@@ -1,0 +1,71 @@
+*{
+  margin: 0px;
+  padding: 0px;
+  outline: 0px;
+  box-sizing: border-box;
+}
+.clr{
+  clear: both;
+}
+.main_container{
+  margin: 20px 0px;
+  font-family: sans-serif;
+  font-size: 1rem;
+}
+.appointment{
+  display: block;
+  width: 400px;
+  margin: 0px auto;
+
+}
+.new{
+  padding: 15px 20px;
+  cursor: pointer;
+  font-family: sans-serif;
+  font-size: 1rem;
+  color: #fff;
+  border: 2px solid #009688;
+  background: #009688;
+  transition: all 0.3s;
+  margin: 0px 20px 20px 0px;
+  float: left;
+}
+.new:hover{
+  color: #009688;
+  background: #fff;
+
+}
+.appointment_data{
+  float: ;
+}
+table, tr, td{
+  border: 1px solid #009688;
+  border-collapse: collapse;
+}
+table td{
+  padding: 5px 10px;
+}
+
+table {
+  overflow: hidden;
+  margin: 0px auto;
+}
+td {
+  position: relative;
+}
+tr:hover{
+  background-color: #ffa;
+}
+td:hover::after{
+  content: "";
+  position: absolute;
+  background-color: #ffa;
+  left: 0;
+  top: -5000px;
+  height: 10000px;
+  width: 100%;
+  z-index: -1;
+}
+#time, #duration{
+  color: #FF5722;
+}
