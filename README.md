@@ -1,5 +1,5 @@
 # Appointment-Scheduler
-It is a great app for scheduling and managing your appointments. It is suitable for almost every company like hospitals, clinics, healthcare center, nursing home, consulting center etc. It is a powerful app to manage your schedules built with powerful libraries like React js and jQuery.
+It is a powerful app built with React js for scheduling and managing your appointments. It is suitable for almost every company like hospitals, clinics, healthcare center, nursing home, consulting center etc.
 
 ## Usage Manual
 * 1. open the index.html file with any web browser.
