@@ -14,3 +14,6 @@ It is a powerful app built with React js for scheduling and managing your appoin
 * react-dom.js
 * browser.js
 * jQuery
+
+## Communicate with me:
+* Emanil: smshakil.kuet@gmail.com
